@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "848092558693",
+    "project_id": "flutter-chat-app-df254",
+    "storage_bucket": "flutter-chat-app-df254.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848092558693:android:0b6093b1d27fca0e6b9d8c",
+        "android_client_info": {
+          "package_name": "com.example.sampark"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW00j9ieoV4jlzPIN_QdqwCv9Yo1RUjjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
