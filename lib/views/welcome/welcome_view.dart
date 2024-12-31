@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sampark/views/welcome/widgets/welcome_heading.dart';
+import 'package:sampark/views/welcome/widgets/slider_action.dart';
+import 'package:sampark/views/welcome/widgets/welcome_body.dart';
+
+import '../../config/components/welcome_heading.dart';
 
 class WelcomeView extends StatelessWidget {
   const WelcomeView({super.key});
@@ -9,13 +12,12 @@ class WelcomeView extends StatelessWidget {
     return const Scaffold(
       body: SafeArea(
         child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 30,
-              ),
-              WelcomeHeading(),
-            ],
+          child: Padding(
+            padding: EdgeInsets.all(28.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [WelcomeHeading(), WelcomeBody(), SliderAction()],
+            ),
           ),
         ),
       ),

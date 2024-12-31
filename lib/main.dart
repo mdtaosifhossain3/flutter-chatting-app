@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sampark/config/app_theme.dart';
-import 'package:sampark/views/splash/splash_view.dart';
+import 'package:sampark/config/routes/routes.dart';
 import 'package:sampark/views/welcome/welcome_view.dart';
 
 void main() {
@@ -13,13 +14,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sampark',
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
-      home: WelcomeView(),
+      getPages: Routes.views,
+      home: const WelcomeView(),
     );
   }
 }
