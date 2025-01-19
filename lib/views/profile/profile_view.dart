@@ -24,7 +24,7 @@ class ProfileView extends StatelessWidget {
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Image(image: AssetImage(AppImages.boyUrl)),
+                const Image(image: AssetImage(AppImages.girlUrl)),
                 const Column(
                   children: [
                     ProfileTile(
