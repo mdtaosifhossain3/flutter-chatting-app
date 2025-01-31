@@ -5,22 +5,17 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:sampark/bloc/auth_bloc/auth_bloc.dart';
 import 'package:sampark/config/app_colors.dart';
 import 'package:sampark/config/app_strings.dart';
+import 'package:sampark/config/components/button_widget.dart';
 import 'package:sampark/config/routes/routes_name.dart';
 import 'package:sampark/utils/enums.dart';
 
 /// A widget representing the submit button for the login form.
 class SubmitButton extends StatelessWidget {
   final formKey;
-  final String name;
-  final String email;
-  final String password;
 
-  const SubmitButton({
+  SubmitButton({
     super.key,
     required this.formKey,
-    required this.name,
-    required this.email,
-    required this.password,
   });
 
   @override
@@ -41,36 +36,18 @@ class SubmitButton extends StatelessWidget {
           buildWhen: (current, previous) =>
               current.postApiStatus != previous.postApiStatus,
           builder: (context, state) {
-            return GestureDetector(
-              onTap: () {
-                print(name);
-                print(email);
-                print(password);
-                print("Hello World");
-
-                if (formKey.currentState.validate()) {
-                  context.read<AuthBloc>().add(RegisterSubmitEvent(
-                      name: name, email: email, password: password));
-                }
-              },
-              child: Container(
-                height: 45,
-                width: MediaQuery.of(context).size.width * 0.5,
-                decoration: BoxDecoration(
-                  color: AppColors.dPrimaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    AppStrings.registerST,
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelLarge
-                        ?.copyWith(color: AppColors.dOnTextColor),
-                  ),
-                ),
-              ),
-            );
+            return ButtonWidget(
+                name: state.postApiStatus == PostApiStatus.loading ||
+                        state.postApiStatus == PostApiStatus.success
+                    ? "Loading..."
+                    : "Register",
+                onPressed: state.postApiStatus == PostApiStatus.loading
+                    ? () {}
+                    : () {
+                        if (formKey.currentState.validate()) {
+                          context.read<AuthBloc>().add(RegisterSubmitEvent());
+                        }
+                      });
           }),
     );
   }

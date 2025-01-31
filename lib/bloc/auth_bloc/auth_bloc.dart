@@ -44,19 +44,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     try {
       var cred = await instance.createUserWithEmailAndPassword(
-          email: event.email, password: event.password);
-      if (!Firebase.apps.isNotEmpty) {
-        await Firebase.initializeApp();
-      }
+          email: state.email, password: state.password);
+
       if (cred.user != null) {
         //Update DisplayName
-        await FirebaseAuth.instance.currentUser!.updateDisplayName(event.name);
+        await FirebaseAuth.instance.currentUser!.updateDisplayName(state.name);
 
         // Create an user Collection
         await FirebaseFirestore.instance
             .collection("users")
             .doc(cred.user!.uid)
-            .set({"name": event.name, "email": event.email});
+            .set({"name": state.name, "email": state.email});
 
         Get.offAllNamed(RoutesName.chatView);
 
@@ -79,7 +77,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             postApiStatus: PostApiStatus.error,
             message: "The email address is not valid."));
       } else {
-        print("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         print(e);
         emit(state.copyWith(
             postApiStatus: PostApiStatus.error,

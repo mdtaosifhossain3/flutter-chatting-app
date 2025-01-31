@@ -45,15 +45,6 @@ class LoginSubmitEvent extends AuthEvent {
 }
 
 class RegisterSubmitEvent extends AuthEvent {
-  final String name;
-  final String email;
-  final String password;
-
-  RegisterSubmitEvent({
-    required this.name,
-    required this.email,
-    required this.password,
-  });
   @override
-  List<Object?> get props => [name, email, password];
+  List<Object?> get props => [];
 }

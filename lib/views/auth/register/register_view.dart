@@ -22,9 +22,6 @@ class RegisterView extends StatefulWidget {
 
 /// The state of the [LoginScreen] widget.
 class _RegisterViewState extends State<RegisterView> {
-  late TextEditingController _fullNameController;
-  late TextEditingController _emailController;
-  late TextEditingController _passwordController;
   final _fullNameFocusNode = FocusNode();
   final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
@@ -36,16 +33,10 @@ class _RegisterViewState extends State<RegisterView> {
   void initState() {
     super.initState();
     _authBloc = AuthBloc();
-    _fullNameController = TextEditingController();
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _fullNameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
     _fullNameFocusNode.dispose();
     _emailFocusNode.dispose();
     _passwordFocusNode.dispose();
@@ -74,25 +65,19 @@ class _RegisterViewState extends State<RegisterView> {
                         children: [
                           FullName(
                             focusNode: _fullNameFocusNode, // Email input field
-                            controller: _fullNameController,
                           ),
                           const SizedBox(height: 20),
                           EmailInput(
                             focusNode: _emailFocusNode, // Email input field
-                            controller: _emailController,
                           ),
                           const SizedBox(height: 20),
                           PasswordInput(
-                            controller: _passwordController,
                             focusNode:
                                 _passwordFocusNode, // Password input field
                           ),
                           const SizedBox(height: 30),
                           SubmitButton(
                             formKey: _formKey,
-                            name: _fullNameController.text,
-                            email: _emailController.text,
-                            password: _passwordController.text,
                           ),
                         ],
                       ),

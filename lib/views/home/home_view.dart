@@ -45,7 +45,11 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
               )),
           action: [
             IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+            IconButton(
+                onPressed: () {
+                  Get.offAllNamed(RoutesName.profileView);
+                },
+                icon: Icon(Icons.more_vert)),
           ]),
       body: Column(
         children: [

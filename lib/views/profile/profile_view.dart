@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sampark/config/app_colors.dart';
 import 'package:sampark/config/app_images.dart';
 import 'package:sampark/config/app_strings.dart';
+import 'package:sampark/config/components/appbar.dart';
 import 'package:sampark/config/components/button_widget.dart';
+import 'package:sampark/views/home/home_view.dart';
 import 'package:sampark/views/profile/widgets/profile_tile.dart';
 
 class ProfileView extends StatelessWidget {
@@ -11,6 +13,15 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: customAppbar(
+          context: context,
+          isLeading: IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) {
+                  return const HomeView();
+                }));
+              },
+              icon: Icon(Icons.arrow_back_ios))),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Center(
@@ -21,7 +32,7 @@ class ProfileView extends StatelessWidget {
             decoration: BoxDecoration(
                 color: AppColors.dContainerColor,
                 borderRadius: BorderRadius.circular(20)),
-            child: const Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const Image(image: AssetImage(AppImages.girlUrl)),
@@ -49,11 +60,12 @@ class ProfileView extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 18,
                 ),
                 ButtonWidget(
                   name: "Save",
+                  onPressed: () {},
                 )
               ],
             ),

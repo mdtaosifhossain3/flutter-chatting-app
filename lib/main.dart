@@ -8,6 +8,7 @@ import 'package:sampark/views/auth/login/login_view.dart';
 import 'package:sampark/views/auth/register/register_view.dart';
 import 'package:sampark/views/home/home_view.dart';
 import 'package:sampark/views/profile/profile_view.dart';
+import 'package:sampark/views/splash/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
       getPages: Routes.views,
-      home: ProfileView(),
+      home: SplashView(),
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:sampark/config/routes/routes_name.dart';
 import 'package:sampark/views/auth/register/register_view.dart';
 import 'package:sampark/views/chatView/chat_view.dart';
 import 'package:sampark/views/home/home_view.dart';
+import 'package:sampark/views/profile/profile_view.dart';
+import 'package:sampark/views/welcome/welcome_view.dart';
 
 import '../../views/auth/login/login_view.dart';
 
@@ -27,6 +29,16 @@ class Routes {
       name: RoutesName.chatView,
       page: () => const ChatView(),
       transition: Transition.rightToLeft,
-    )
+    ),
+    GetPage(
+      name: RoutesName.welcomeView,
+      page: () => const WelcomeView(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: RoutesName.profileView,
+      page: () => const ProfileView(),
+      transition: Transition.rightToLeft,
+    ),
   ];
 }
