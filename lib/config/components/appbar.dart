@@ -12,6 +12,7 @@ PreferredSizeWidget customAppbar(
   return AppBar(
     foregroundColor: AppColors.dOnTextColor,
     backgroundColor: bgColor,
+    surfaceTintColor: bgColor,
     leading: isLeading ??
         IconButton(
             onPressed: () {

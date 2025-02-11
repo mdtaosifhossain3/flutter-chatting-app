@@ -1,16 +1,11 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sampark/config/routes/routes_name.dart';
-
-import '../../services/register_service.dart';
 import '../../utils/enums.dart';
 
 part 'auth_event.dart';
@@ -24,19 +19,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<RegisterSubmitEvent>(_onRegisterButtonHit);
   }
-
+//Full Name Changed
   void _onFullNameChanged(FullNameChangedEvent event, Emitter<AuthState> emit) {
     emit(state.copyWith(name: event.name));
   }
 
+//Email Changed
   void _onEmailChanged(EmailChangedEvent event, Emitter<AuthState> emit) {
     emit(state.copyWith(mail: event.email));
   }
 
+  //Password Changed
   void _onPasswordChanged(PasswordChangedEvent event, Emitter<AuthState> emit) {
     emit(state.copyWith(pass: event.password));
   }
 
+  //Register Button Hit
   void _onRegisterButtonHit(
       RegisterSubmitEvent event, Emitter<AuthState> emit) async {
     emit(state.copyWith(postApiStatus: PostApiStatus.loading));

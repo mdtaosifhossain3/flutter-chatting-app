@@ -7,22 +7,36 @@ import '../app_images.dart';
 import '../routes/routes_name.dart';
 
 class CardTile extends StatelessWidget {
-  const CardTile({super.key});
+  final Color? bgColor;
+  final Widget? leading;
+  final Widget? trailing;
+  final String title;
+  final String? subtitle;
+  const CardTile(
+      {super.key,
+      required this.title,
+      this.subtitle = "",
+      this.bgColor,
+      this.leading,
+      this.trailing});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 14),
+      tileColor: bgColor ?? Colors.transparent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       onTap: () {
-        Get.offAllNamed(RoutesName.chatView);
+        //  Get.offAllNamed(RoutesName.chatView);
       },
-      leading: Image.asset(AppImages.boyUrl),
+      leading: leading ?? Image.asset(AppImages.boyUrl),
       title: Text(
-        "Taoist Hossain",
+        title,
         style: Theme.of(context).textTheme.labelLarge,
       ),
-      subtitle: Text("Bad me kot tot tu",
-          style: Theme.of(context).textTheme.labelSmall),
-      trailing: Text("9.00 am", style: Theme.of(context).textTheme.labelSmall),
+      subtitle: Text(subtitle!, style: Theme.of(context).textTheme.labelSmall),
+      trailing: trailing ??
+          Text("9.00 am", style: Theme.of(context).textTheme.labelSmall),
     );
   }
 }

@@ -5,4 +5,5 @@ class RoutesName {
   static const chatView = "/chat_view";
   static const welcomeView = "/welcome_view";
   static const profileView = "/profile_view";
+  static const contactView = "/contact_view";
 }

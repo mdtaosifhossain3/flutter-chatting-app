@@ -35,7 +35,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
     return Scaffold(
       appBar: customAppbar(
           context: context,
-          title: Text(AppStrings.appName),
+          title: const Text(AppStrings.appName),
           bgColor: AppColors.dContainerColor,
           isLeading: IconButton(
               onPressed: () {},
@@ -86,7 +86,9 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
               ListView.builder(
                   itemCount: 15,
                   itemBuilder: (context, index) {
-                    return const CardTile();
+                    return const CardTile(
+                      title: 'Taosif Hossain',
+                    );
                   }),
               const Center(child: Text("Hi")),
               const Center(child: Text("Hi")),
@@ -95,7 +97,9 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.offAllNamed(RoutesName.contactView);
+        },
         backgroundColor: AppColors.dPrimaryColor,
         child: const Icon(Icons.add),
       ),

@@ -6,6 +6,7 @@ import 'package:sampark/config/routes/routes.dart';
 import 'package:sampark/firebase_options.dart';
 import 'package:sampark/views/auth/login/login_view.dart';
 import 'package:sampark/views/auth/register/register_view.dart';
+import 'package:sampark/views/contact/contact_view.dart';
 import 'package:sampark/views/home/home_view.dart';
 import 'package:sampark/views/profile/profile_view.dart';
 import 'package:sampark/views/splash/splash_view.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
       getPages: Routes.views,
-      home: SplashView(),
+      home: ContactView(),
     );
   }
 }
