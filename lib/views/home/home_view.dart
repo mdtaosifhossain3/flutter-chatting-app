@@ -9,6 +9,8 @@ import 'package:sampark/config/components/appbar.dart';
 import 'package:sampark/config/components/card_tile.dart';
 import 'package:sampark/config/routes/routes_name.dart';
 
+import '../../controllers/profile_page_controller.dart';
+
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -22,11 +24,12 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
   int setTabIndex = 0;
   @override
   void initState() {
-    controller = TabController(length: 5, vsync: this);
+    controller = TabController(length: 3, vsync: this);
     controller!.addListener(() {
       setTabIndex = controller!.index;
       setState(() {});
     });
+
     super.initState();
   }
 
@@ -47,7 +50,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
             IconButton(onPressed: () {}, icon: Icon(Icons.search)),
             IconButton(
                 onPressed: () {
-                  Get.offAllNamed(RoutesName.profileView);
+                  Get.toNamed(RoutesName.profileView);
                 },
                 icon: Icon(Icons.more_vert)),
           ]),
@@ -98,7 +101,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.offAllNamed(RoutesName.contactView);
+          Get.toNamed(RoutesName.contactView);
         },
         backgroundColor: AppColors.dPrimaryColor,
         child: const Icon(Icons.add),

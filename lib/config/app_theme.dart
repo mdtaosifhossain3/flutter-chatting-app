@@ -5,6 +5,9 @@ var lightTheme = ThemeData();
 var darkTheme = ThemeData(
     brightness: Brightness.dark,
     useMaterial3: true,
+    appBarTheme: AppBarTheme(
+        backgroundColor: AppColors.dContainerColor,
+        surfaceTintColor: AppColors.dContainerColor),
     colorScheme: const ColorScheme.dark(
         primary: AppColors.dPrimaryColor,
         surface: AppColors.dScaffoldColor,

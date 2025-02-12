@@ -40,7 +40,7 @@ class ProfileTile extends StatelessWidget {
               children: [
                 Text(
                   subTitle,
-                  style: Theme.of(context).textTheme.labelSmall,
+                  style: Theme.of(context).textTheme.labelMedium,
                 ),
                 isEditable && Get.find<ProfilePageController>().isNameEdit.value
                     ? SizedBox(

@@ -19,8 +19,7 @@ PreferredSizeWidget customAppbar(
               Get.back();
             },
             icon: const Icon(
-              Icons.arrow_back_ios_new_outlined,
-              size: 20,
+              Icons.arrow_back_ios,
             )),
     title: title,
     actions: action,

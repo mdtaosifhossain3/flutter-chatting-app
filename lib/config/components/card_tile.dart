@@ -27,7 +27,7 @@ class CardTile extends StatelessWidget {
       tileColor: bgColor ?? Colors.transparent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       onTap: () {
-        //  Get.offAllNamed(RoutesName.chatView);
+        Get.toNamed(RoutesName.chatView);
       },
       leading: leading ?? Image.asset(AppImages.boyUrl),
       title: Text(

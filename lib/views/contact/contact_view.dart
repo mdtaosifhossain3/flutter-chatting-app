@@ -24,28 +24,14 @@ class ContactView extends StatelessWidget {
                   contactPageController.isSearchBarShowed.value =
                       !contactPageController.isSearchBarShowed.value;
                 },
-                icon: const Icon(Icons.search))
+                icon: Obx(() => contactPageController.isSearchBarShowed.value
+                    ? const Icon(Icons.close)
+                    : const Icon(Icons.search)))
           ]),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
-            // Container(
-            //   width: double.infinity,
-            //   height: 80,
-            //   color: AppColors.dScaffoldColor,
-            //   child: Center(
-            //     child: TextField(
-            //       style: Theme.of(context).textTheme.labelLarge,
-            //       decoration: InputDecoration(
-            //           hintText: "Search here...",
-            //           enabledBorder: OutlineInputBorder(),
-            //           focusedBorder: OutlineInputBorder(
-            //               borderSide: BorderSide(
-            //                   color: AppColors.dPrimaryColor, width: 2.00))),
-            //     ),
-            //   ),
-            // ),
             Obx(() {
               return contactPageController.isSearchBarShowed.value
                   ? Container(
@@ -60,7 +46,7 @@ class ContactView extends StatelessWidget {
                             decoration: InputDecoration(
                                 filled: true,
                                 fillColor: AppColors.dContainerColor,
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.search,
                                   color: AppColors.dOnTextColor,
                                 ),
@@ -69,40 +55,40 @@ class ContactView extends StatelessWidget {
                                     .textTheme
                                     .labelLarge
                                     ?.copyWith(color: AppColors.dGreyColor),
-                                enabledBorder: OutlineInputBorder(
+                                enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                   color: AppColors.dContainerColor,
                                 )),
-                                focusedBorder: OutlineInputBorder()),
+                                focusedBorder: const OutlineInputBorder()),
                           ),
                         ),
                       ),
                     )
-                  : SizedBox();
+                  : const SizedBox();
             }),
             Expanded(
               child: ListView(
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.dContainerColor,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 15),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20))),
                       child: Row(
                         children: [
-                          CircleAvatar(
+                          const CircleAvatar(
                             backgroundColor: AppColors.dPrimaryColor,
                             radius: 28,
                             child: Icon(Icons.person_add),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           Text(
@@ -111,25 +97,25 @@ class ContactView extends StatelessWidget {
                           )
                         ],
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.dContainerColor,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 15),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20))),
                       child: Row(
                         children: [
-                          CircleAvatar(
+                          const CircleAvatar(
                             backgroundColor: AppColors.dPrimaryColor,
                             radius: 28,
                             child: Icon(Icons.person_add),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           Text(
@@ -139,7 +125,7 @@ class ContactView extends StatelessWidget {
                         ],
                       )),
                   Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 10),
+                    padding: const EdgeInsets.only(top: 20, bottom: 10),
                     child: Text(
                       "Contacts on Sampark",
                       style: Theme.of(context)
@@ -151,7 +137,7 @@ class ContactView extends StatelessWidget {
                   ListView.builder(
                       shrinkWrap: true,
                       itemCount: 10,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         return const Padding(
                           padding: EdgeInsets.symmetric(vertical: 8),
