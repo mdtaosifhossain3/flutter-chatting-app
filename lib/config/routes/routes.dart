@@ -28,7 +28,7 @@ class Routes {
     ),
     GetPage(
       name: RoutesName.chatView,
-      page: () => const ChatView(),
+      page: () => ChatView(),
       transition: Transition.rightToLeft,
     ),
     GetPage(

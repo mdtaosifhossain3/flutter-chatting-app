@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 import 'package:sampark/config/app_colors.dart';
 import 'package:sampark/config/app_images.dart';
 import 'package:sampark/config/app_strings.dart';
 import 'package:sampark/config/components/appbar.dart';
 import 'package:sampark/config/components/card_tile.dart';
 import 'package:sampark/config/routes/routes_name.dart';
+import 'package:sampark/controllers/chat_controller.dart';
 
 import '../../controllers/profile_page_controller.dart';
+import '../chatView/chat_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -20,6 +23,8 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
   TabController? controller;
+
+  ChatController chatController = Get.put(ChatController());
 
   int setTabIndex = 0;
   @override
@@ -86,13 +91,48 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
           ),
           Expanded(
             child: TabBarView(controller: controller, children: [
-              ListView.builder(
-                  itemCount: 15,
-                  itemBuilder: (context, index) {
-                    return const CardTile(
-                      title: 'Taosif Hossain',
-                    );
-                  }),
+              Obx(() {
+                if (chatController.chatRoomList.isEmpty) {
+                  return Center(child: Text("No chats available"));
+                }
+
+                return ListView.builder(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15,
+                    ),
+                    itemCount: chatController.chatRoomList.length,
+                    itemBuilder: (context, index) {
+                      final snap = chatController.chatRoomList[index];
+                      DateTime dateTime =
+                          DateTime.parse(snap.lastMessageTimeStamp);
+                      String formattedTime =
+                          DateFormat('h:mm a').format(dateTime);
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 15.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.dContainerColor,
+                              padding: const EdgeInsets.symmetric(),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20))),
+                          onPressed: () {
+                            Get.to(ChatView(
+                              userModel: snap.receiver,
+                            ));
+                          },
+                          child: CardTile(
+                            title: snap.receiver.name,
+                            subtitle: snap.lastMessage,
+                            id: snap.receiver.id,
+                            trailing: Text(
+                              formattedTime,
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
+                          ),
+                        ),
+                      );
+                    });
+              }),
               const Center(child: Text("Hi")),
               const Center(child: Text("Hi")),
             ]),

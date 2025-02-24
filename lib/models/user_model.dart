@@ -1,4 +1,5 @@
 class UserModel {
+  String id;
   String name;
   String email;
   String phone;
@@ -9,6 +10,7 @@ class UserModel {
   DateTime lastActive;
 
   UserModel({
+    required this.id,
     required this.name,
     required this.email,
     required this.phone,
@@ -22,6 +24,7 @@ class UserModel {
   // Convert JSON to Dart Object
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
+      id: json["id"],
       name: json["name"],
       email: json["email"],
       phone: json["phone"],
@@ -36,6 +39,7 @@ class UserModel {
   // Convert Dart Object to JSON
   Map<String, dynamic> toJson() {
     return {
+      "id": id,
       "name": name,
       "email": email,
       "phone": phone,

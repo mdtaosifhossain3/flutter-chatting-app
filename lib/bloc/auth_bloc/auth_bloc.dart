@@ -51,6 +51,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await FirebaseAuth.instance.currentUser!.updateDisplayName(state.name);
         //UserMode
         var model = UserModel(
+            id: FirebaseAuth.instance.currentUser!.uid,
             name: state.name,
             email: state.email,
             phone: "",

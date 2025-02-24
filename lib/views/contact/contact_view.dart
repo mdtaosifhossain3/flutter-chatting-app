@@ -1,10 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:sampark/config/app_colors.dart';
 import 'package:sampark/config/components/appbar.dart';
 import 'package:sampark/config/components/card_tile.dart';
+import 'package:sampark/controllers/chat_controller.dart';
 import 'package:sampark/controllers/contact_view_controller.dart';
+import 'package:sampark/models/user_model.dart';
+
+import '../chatView/chat_view.dart';
 
 class ContactView extends StatelessWidget {
   ContactView({super.key});
@@ -134,20 +139,47 @@ class ContactView extends StatelessWidget {
                           ?.copyWith(color: AppColors.dGreyColor),
                     ),
                   ),
-                  ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 10,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8),
-                          child: CardTile(
-                            title: "Taosif",
-                            bgColor: AppColors.dContainerColor,
-                            subtitle: "This is subtitle",
-                          ),
-                        );
-                      }),
+                  StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection("users")
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        final snap = snapshot.data!.docs
+                            .map((doc) => UserModel.fromJson(doc.data()))
+                            .toList();
+
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snap.length,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              final user = snap[index];
+
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8),
+                                child: CardTile(
+                                  title: user.name,
+                                  bgColor: AppColors.dContainerColor,
+                                  subtitle: user.about,
+                                  id: user.id,
+                                  userModel: user,
+                                  onTap: () {
+                                    Get.to(ChatView(
+                                      userModel: user,
+                                    ));
+                                  },
+                                ),
+                              );
+                            });
+                      })
                 ],
               ),
             )
